@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 int strstr_test(const char *a, const char *b) {
     int idx;
@@ -11,7 +12,7 @@ int strstr_test(const char *a, const char *b) {
     if(b_len > a_len) return -1; //illegal case
     if(b_len == 0) return -1; //illegal case
     
-    int round = a_len;
+    int round = a_len - b_len;
 
     while(round--) {
 //        printf("a=%c, b=%c\n", *a, *b);
@@ -39,6 +40,7 @@ int strstr_test(const char *a, const char *b) {
 }
 
 int main() {
+    clock_t begin = clock();
     const char *a = "helollo"; //Better give a "const" when assigning string literal
     const char *sub_a = "oll";
     
@@ -47,5 +49,8 @@ int main() {
     int ret_idx = strstr_test(a, sub_a);
     if (ret_idx != -1) printf("Yeah.. We found it at %d of %s\n", ret_idx, a);
     else printf("No...We can not find it\n");
+    clock_t end = clock();
+    double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+    printf("Spend %f seconds\n", time_spent);
     return 0;
 }
