@@ -64,15 +64,22 @@ string addBinary(string a, string b) {
                     }
                 }
         }
-        if (carry) //After last calculation there is still a carry
+        if (carry) //After finish last calculation, there is still a carry
             res.insert(res.begin(), '1');
         return res;
     }
 
 int main() {
-    string a("1010");
-    string b("1011");
+    char str_a[10];
+    char str_b[10];
+    cout << "Please enter a string(e.g \"1011\"):" << endl;
+    scanf("%9s", str_a); //need one space for '\0'
+    cout << "Please enter a string again(e.g \"1011\"):" << endl;
+    scanf("%9s", str_b);
+    //string a("1010");
+    //string b("1011");
     string res;
-    res = addBinary(a, b);
-    cout << res << endl;
+    res = addBinary(str_a, str_b);
+    cout << "After adding , result=" << res << endl;
+    return 0;
 }
